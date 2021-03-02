@@ -1,11 +1,11 @@
 <?php
-require_once '../paytabs-plugin.php';
-$plugin= new paytabs();
+require_once '../Paytabs-plugin.php';
+$plugin = new Paytabs();
 
 $request_url = 'payment/query';
 $data = [
-    "tran_ref"=> "TST2104800080101"
+    "tran_ref" => "TST2104800080101"
 ];
-$page = $plugin->Send_api_request($request_url,$data);
+$page = $plugin->send_api_request($request_url, $data);
 print_r($page);
 exit();

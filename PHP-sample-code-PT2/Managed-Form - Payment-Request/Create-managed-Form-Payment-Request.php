@@ -84,7 +84,6 @@
 </form>
 
 
-
 <script type="text/javascript">
     var form = document.getElementById('paymentform');
     paylib.inlineForm({
@@ -99,7 +98,6 @@
         }
     });
 </script>
-
 
 
 </body>
