@@ -14,9 +14,7 @@ $data = [
     "tran_ref" => "TST2105600089454", // trans_ref you received in the create page with token request
     "hide_shipping" => true,
     "paypage_lang" => "en",
-    "callback" => "https://webhook.site/ebe60b53-4158-4d82-aa16-231f2823378d",
-    "return" => "http://localhost/default/checkresponse.php",
-];
+   ];
 $page = $plugin->send_api_request($request_url, $data);
 print_r($page);
 exit();

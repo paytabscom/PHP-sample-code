@@ -11,8 +11,8 @@ $data = [
     "cart_amount" => 1000,
     "cart_description" => "Description of the items/services",
     "paypage_lang" => "en",
-    "callback" => "https://webhook.site/ebe60b53-4158-4d82-aa16-231f2823378d",
-    "return" => "http://localhost/default/checkresponse.php",
+    "callback" => "https://webhook.site/730acce0-e54e-4522-8a45-f9b8e44624b6", // Must be HTTPS, otherwise no post data from paytabs
+    "return" => "http://localhost/PHP-sample-code/PHP-sample-code-PT2/Result.php", // Must be HTTPS, otherwise no post data from paytabs , must be relative to your site URL
     "customer_details" => [
         "name" => "first last",
         "email" => "email@domain.com",
@@ -34,7 +34,7 @@ $data = [
         "zip" => "54321"
     ],
     "framed" => true,
-    "hide_shipping" > true
+    "hide_shipping" => true
 ];
 $page = $plugin->send_api_request($request_url, $data);
 
