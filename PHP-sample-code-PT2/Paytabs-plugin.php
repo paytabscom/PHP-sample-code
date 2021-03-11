@@ -4,7 +4,7 @@
 class Paytabs
 {
     const   PROFILE_ID = 59305,
-        SERVER_KEY = 'S9JN9NTLRW-JBD9GGBBGN-DRLNJBBGTG	',
+        SERVER_KEY = 'S9JN9NTLRW-JBD9GGBBGN-DRLNJBBGTG',
         BASE_URL = 'https://secure-egypt.paytabs.com/';
 
 
@@ -29,5 +29,27 @@ class Paytabs
         $response = json_decode(curl_exec($curl), true);
         curl_close($curl);
         return $response;
+    }
+
+    function getBaseUrl()
+    {
+        // output: /myproject/index.php
+        $currentPath = $_SERVER['PHP_SELF'];
+
+        // output: Array ( [dirname] => /myproject [basename] => index.php [extension] => php [filename] => index )
+        $pathInfo = pathinfo($currentPath);
+
+        // output: localhost
+        $hostName = $_SERVER['HTTP_HOST'];
+
+        // output: http://
+        $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https://'?'https://':'http://';
+
+        // output: /myproject/sub folder contains PT2/
+        $current_directory = substr(strrchr($pathInfo['dirname'],'/'), 1);
+        $parent_directory = substr($pathInfo['dirname'], 0, - strlen($current_directory));
+
+        // return: http://localhost/myproject/
+        return $protocol.$hostName.$parent_directory;
     }
 }

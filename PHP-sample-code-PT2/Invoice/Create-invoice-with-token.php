@@ -2,6 +2,7 @@
 require_once '../Paytabs-plugin.php';
 $plugin = new Paytabs();
 
+$base_url = $plugin->getBaseUrl();
 $request_url = 'payment/new/invoice';
 $data = [
     "tran_type" => "sale",
@@ -11,7 +12,7 @@ $data = [
     "cart_amount" => "950",
     "cart_id" => "Test Cart",
     "cart_description" => "Test Description",
-    "return" => "http://localhost/PHP-sample-code/PHP-sample-code-PT2/Result.php", // Must be HTTPS, otherwise no post data from paytabs , must be relative to your site URL
+    "return" => $base_url."Result.php", // Must be HTTPS, otherwise no post data from paytabs , must be relative to your site URL
     "hide_shipping" => true,
     "invoice" => [
         "shipping_charges" => 0,
