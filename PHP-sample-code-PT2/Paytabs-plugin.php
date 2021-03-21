@@ -52,4 +52,30 @@ class Paytabs
         // return: http://localhost/myproject/
         return $protocol.$hostName.$parent_directory;
     }
+
+    function is_valid_redirect($post_values)
+    {
+        $serverKey = $this::SERVER_KEY;
+
+        // Request body include a signature post Form URL encoded field
+        // 'signature' (hexadecimal encoding for hmac of sorted post form fields)
+        $requestSignature = $post_values["signature"];
+        unset($post_values["signature"]);
+        $fields = array_filter($post_values);
+
+        // Sort form fields
+        ksort($fields);
+
+        // Generate URL-encoded query string of Post fields except signature field.
+        $query = http_build_query($fields);
+
+        $signature = hash_hmac('sha256', $query, $serverKey);
+        if (hash_equals($signature, $requestSignature) === TRUE) {
+            // VALID Redirect
+            return true;
+        } else {
+            // INVALID Redirect
+            return false;
+        }
+    }
 }
